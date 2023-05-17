@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="book.css" />
+    <!-- Font Awesome Cdn Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#">
+                        <i class="fas fa-cart-plus"></i>
+                        <span class="nav-item">Register</span>
+                    </a></li>
+                <li><a href="table.html">
+                        <i class="fas fa-book"></i>
+                        <span class="nav-item">Library</span>
+                    </a></li>
+            </ul>
+        </nav>
+
+
+        <section class="main">
+            <div class="main-top">
+                <h1>Book Registration</h1>
+                <i class="fas fa-user-cog"></i>
+            </div>
+
+            <div class="form">
+                <form action="#" id="form">
+                    <div class="field-box">
+                        <div class="field">
+                            <span class="details">Title</span>
+                            <input type="text" placeholder="Enter Title" id="title" name="title" required>
+                        </div>
+                        <div class="field">
+                            <span class="details">Author</span>
+                            <input type="text" placeholder="Enter Author" id="author" name="author" required>
+                        </div>
+                    </div>
+                    <div class="field-box">
+                        <div class="field">
+                            <span class="details">Genre</span>
+                            <input type="text" placeholder="Enter Genre" id="genre" name="genre" required>
+                        </div>
+                        <div class="field">
+                            <span class="details">Availability</span>
+                            <input type="number" placeholder="Enter Quantity" id="availability" name="availability" required>
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" id="register" name="register">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('input[type="text"]').val('');
+            $('input[type="number"]').val('');
+
+            $("#register").click(function(event) {
+                event.preventDefault();
+
+                // serialize form data
+                var formData = $("#form").serializeArray();
+
+                console.log(JSON.stringify(formData));
+
+                // send AJAX request
+                $.ajax({
+                    url: 'http://172.17.100.12:8081/santiago/cgi-bin/post.o',
+                    type: 'POST',
+                    data: JSON.stringify(formData),
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === "success") {
+                            console.log(response.message)
+                            console.log(response.data)
+
+                            $('input[type="text"]').val('');
+                            $('input[type="number"]').val('');
+
+                        } else if (response.status === "error") {
+                            console.log(response.message)
+                            console.log(response.message_additional)
+
+                            var toastHTML = '<i class="material-icons">error_outline</i>&nbsp;<span>' + response.message + '</span>';
+                            M.toast({
+                                html: toastHTML,
+                                classes: 'rounded'
+                            });
+
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
