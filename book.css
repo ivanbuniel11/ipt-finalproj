@@ -16,9 +16,9 @@
 }
 
 body {
-  background-image: url("https://assets.weforum.org/article/image/JMF96ETfn1kSViVnUou1Z0XIDwWcPpT5mrPc7-ytpAc.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 nav {
@@ -81,7 +81,7 @@ a:hover i {
     display: flex;
 }
 
-/* MAin Section */
+/* Main */
 .main {
     position: relative;
     padding: 20px;
@@ -99,6 +99,10 @@ a:hover i {
     margin: 10px 30px;
     color: rgb(110, 109, 109);
     cursor: pointer;
+}
+
+.main-top h1 {
+    color: antiquewhite;
 }
 
 .form {
@@ -160,14 +164,13 @@ a:hover i {
     background: gray;
 }
 
-/*Attendance List serction  */
-.attendance {
+.library {
     width: 80%;
     margin: 50px 0 0 10%;
     text-transform: capitalize;
 }
 
-.attendance-list {
+.library-list {
     padding: 10px;
     margin-top: 10px;
     background: #fff;
@@ -175,23 +178,23 @@ a:hover i {
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
-.attendance .attendance-top {
+.library .library-top {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
 
-.attendance .attendance-data {
+.library .library-data {
     width: calc((100% / 2) - 10px);
 }
 
-.attendance .attendance-data.search {
+.library .library-data.search {
     display: flex;
     justify-content: right;
 }
 
-.attendance .attendance-data input {
+.library .library-data input {
     padding: 10px;
     margin-right: 10px;
     color: var(--text-color);
@@ -200,7 +203,7 @@ a:hover i {
     border-radius: 5px;
 }
 
-.attendance .attendance-data button {
+.library .library-data button {
     padding: 10px 25px;
     border-radius: 5px;
     background: var(--dark);
@@ -211,7 +214,7 @@ a:hover i {
     margin-left: 10px;
 }
 
-.attendance .attendance-data button:hover {
+.library .library-data button:hover {
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
     background: var(--text-color);
 }
